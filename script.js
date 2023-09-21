@@ -30,3 +30,5 @@ function resetFadeInEffect() {
 
 // Event listener to trigger reset when user scrolls
 window.addEventListener('scroll', resetFadeInEffect);
+
+
