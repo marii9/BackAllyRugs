@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const buyNowButton = document.getElementById("buyNowButton");
     const cartPopup = document.getElementById("cartPopup");
     const closeCartPopupButton = document.getElementById("closeCartPopup");
+    const dimensionsSelect = document.getElementById("rugDimensions");
 
     buyNowButton.addEventListener("click", function() {
         cartPopup.classList.remove("hidden");
@@ -45,9 +46,13 @@ document.addEventListener("DOMContentLoaded", function() {
         productImage.src = "imgs/IMG_7247 (1).jpg";
         productImage.alt = "Product Image";
         productImage.classList.add("w-32", "h-32", "mb-4", "mx-auto");
-        
+
         const popupContent = document.querySelector("#cartPopup .bg-white");
         popupContent.insertBefore(productImage, popupContent.firstChild);
+
+        // Handle the selected size here
+        const selectedSize = dimensionsSelect.value;
+        console.log("Selected Size:", selectedSize);
     });
 
     closeCartPopupButton.addEventListener("click", function() {
@@ -60,3 +65,34 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    const stripe = Stripe('pk_test_51NzW6tH0kE1rWiJfdnGZQvOCMOnLgTatvfbtKC28yMDV1pqhN3Hiq9qFID3WFUKIYfYZNklF7K6vRCZ8K9a4hbNF00v9UYYz7G'); 
+
+    const buyNowButton = document.getElementById("buyNowButton");
+    const checkoutButton = document.getElementById("checkoutButton");
+
+    buyNowButton.addEventListener("click", function() {
+        
+    });
+
+    checkoutButton.addEventListener("click", function() {
+        stripe.redirectToCheckout({
+            lineItems: [{price: 'price_1NzWQ3H0kE1rWiJfIBvvprU3', quantity: 1}],
+            mode: 'payment',
+            successUrl: 'https://your-website.com/success',
+            cancelUrl: 'https://your-website.com/cancel',
+        })
+        .then((result) => {
+            if (result.error) {
+                console.error(result.error);
+            }
+        });
+    });
+});
+
+
+
+
+
+
