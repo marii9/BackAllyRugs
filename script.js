@@ -66,15 +66,25 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+document.getElementById('checkoutButton').addEventListener('click', function() {
+    var selectedValue = document.getElementById('size').value;
+
+    if (selectedValue === 'Large') {
+        window.location.href = 'contact.html'; // Redirect to contact page
+    } else {
+        // Perform Stripe checkout for other options
+        // Add your Stripe checkout code here
+    }
+});
 document.addEventListener("DOMContentLoaded", function() {
     const stripe = Stripe('pk_test_51NzW6tH0kE1rWiJfdnGZQvOCMOnLgTatvfbtKC28yMDV1pqhN3Hiq9qFID3WFUKIYfYZNklF7K6vRCZ8K9a4hbNF00v9UYYz7G'); 
 
-    const buyNowButton = document.getElementById("buyNowButton");
+    // const buyNowButton = document.getElementById("buyNowButton");
     const checkoutButton = document.getElementById("checkoutButton");
 
-    buyNowButton.addEventListener("click", function() {
+    // buyNowButton.addEventListener("click", function() {
         
-    });
+    // });
 
     checkoutButton.addEventListener("click", function() {
         stripe.redirectToCheckout({
